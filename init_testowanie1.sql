@@ -13,3 +13,6 @@ CREATE TABLE IF NOT EXISTS rowery (
   PRIMARY KEY (rower_id)
 );
 
+CREATE USER 'testowanieRowery'@'localhost' IDENTIFIED BY 'testowanieRowery';
+GRANT ALL PRIVILEGES ON testowanie1. * TO 'testowanieRowery'@'localhost';
+
