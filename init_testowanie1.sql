@@ -9,10 +9,10 @@ CREATE TABLE IF NOT EXISTS rowery (
   nazwa varchar(50) DEFAULT NULL,
   marka varchar(50) DEFAULT NULL,
   rodzaj varchar(50) DEFAULT NULL,  
-  cena int(100) DEFAULT NULL,
+  cena decimal(15,2) DEFAULT NULL,
   PRIMARY KEY (rower_id)
 );
 
 CREATE USER 'testowanieRowery'@'localhost' IDENTIFIED BY 'testowanieRowery';
 GRANT ALL PRIVILEGES ON testowanie1. * TO 'testowanieRowery'@'localhost';
-
+ALTER USER 'testowanieRowery'@'localhost' IDENTIFIED WITH mysql_native_password BY 'testowanieRowery';
