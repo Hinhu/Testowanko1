@@ -5,19 +5,38 @@
  */
 package testowanko1;
 
-
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  *
  * @author Krzysiek
  */
 
-public class Bike {
+@Entity
+@Table(name = "rowery")
+public class Bike{
+    //private static final long serialVersionUID = 1L;
+
+    @Id @GeneratedValue
+    @Column(name = "rower_id")
     private int id;
+
+    @Column(name = "nazwa")
     private String name;
+
+    @Column(name = "marka")
     private String brand;
+
+    @Column(name = "rodzaj")
     private String type;
+
+    @Column(name = "cena")
     private double price;
+
+    public Bike(){
+
+    }
 
     public Bike(int id, String name, String brand, String type, double price) {
         this.id = id;
@@ -25,6 +44,14 @@ public class Bike {
         this.brand = brand;
         this.type = type;
         this.price = price;
+    }
+
+    public void update(Bike bike){
+        this.id = bike.getId();
+        this.name = bike.getName();
+        this.brand = bike.getBrand();
+        this.type = bike.getType();
+        this.price = bike.getPrice();
     }
 
     public int getId() {
@@ -66,6 +93,9 @@ public class Bike {
     public void setPrice(double price) {
         this.price = price;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Rower{" + "id=" + id + ", nazwa=" + name + ", marka=" + brand + ", rodzaj=" + type + ", cena=" + price + '}';
+    }
 }
