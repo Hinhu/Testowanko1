@@ -43,7 +43,7 @@ public class CRUD {
 
         try{
             transaction = session.beginTransaction();
-            Bike bikeToUpdate = (Bike) session.get(Bike.class, bikeId);
+            Bike bikeToUpdate = session.get(Bike.class, bikeId);
             bikeToUpdate.update(newBike);
             session.update(bikeToUpdate);
             transaction.commit();

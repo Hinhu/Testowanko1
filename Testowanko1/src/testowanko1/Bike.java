@@ -18,7 +18,8 @@ import java.io.Serializable;
 public class Bike{
     //private static final long serialVersionUID = 1L;
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rower_id")
     private int id;
 
@@ -38,8 +39,7 @@ public class Bike{
 
     }
 
-    public Bike(int id, String name, String brand, String type, double price) {
-        this.id = id;
+    public Bike(String name, String brand, String type, double price) {
         this.name = name;
         this.brand = brand;
         this.type = type;
@@ -47,7 +47,6 @@ public class Bike{
     }
 
     public void update(Bike bike){
-        this.id = bike.getId();
         this.name = bike.getName();
         this.brand = bike.getBrand();
         this.type = bike.getType();
