@@ -37,21 +37,4 @@ public class CRUD {
         }
         return bikes;
     }
-
-    public void updateBike(int bikeId, Bike newBike){
-        Session session = sessionFactory.openSession();
-        Transaction transaction;
-
-        try{
-            transaction = session.beginTransaction();
-            Bike bikeToUpdate = (Bike) session.get(Bike.class, bikeId);
-            bikeToUpdate.update(newBike);
-            session.update(bikeToUpdate);
-            transaction.commit();
-        } catch (HibernateException e){
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-    }
 }

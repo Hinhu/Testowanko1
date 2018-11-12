@@ -43,11 +43,14 @@ class CRUDTest {
 
         bike.setPrice(UPDATED_PRICE);
 
-        CRUD crud = new CRUD();
-        crud.updateBike(bikeId, bike);
+        UpdateDAO instance = new UpdateDAO();
+        instance.update(bikeId, bike);
+        
+       
         Transaction transaction1 = session.beginTransaction();
         Bike updatedBike = (Bike) session.get(Bike.class, bikeId);
         transaction1.commit();
+        
         assertEquals(UPDATED_PRICE, updatedBike.getPrice());
 
     }
