@@ -1,7 +1,6 @@
 package crud;
 
 import entity.Bike;
-import entity.Rower;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -29,7 +28,7 @@ public class CRUD {
         List<Bike> bikes = null;
         try{
             transaction = session.beginTransaction();
-            bikes = session.createQuery("FROM testowanko1.Bike").list();
+            bikes = session.createQuery("FROM entity.Bike").list();
             transaction.commit();
         } catch (HibernateException e){
             e.printStackTrace();

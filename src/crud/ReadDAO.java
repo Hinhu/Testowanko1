@@ -5,7 +5,7 @@
  */
 package crud;
 
-import entity.Rower;
+import entity.Bike;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -20,11 +20,11 @@ public class ReadDAO {
     
     }
     
-    public Rower read(int id) {
+    public Bike read(int id) {
         
         SessionFactory factory = new Configuration()
                                 .configure("hibernate.cfg.xml")
-                                .addAnnotatedClass(Rower.class)
+                                .addAnnotatedClass(Bike.class)
                                 .buildSessionFactory();
         
         Session session = factory.getCurrentSession();
@@ -33,7 +33,7 @@ public class ReadDAO {
             session.beginTransaction();
             
             System.out.println("Retriving bike with id: " + id);
-            Rower retrivedBike = (Rower) session.get(Rower.class, id);
+            Bike retrivedBike = (Bike) session.get(Bike.class, id);
             session.getTransaction().commit();
             System.out.println("Retrived bike: " + retrivedBike);
             return retrivedBike;

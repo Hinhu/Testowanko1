@@ -8,7 +8,7 @@ package crud;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import entity.Rower;
+import entity.Bike;
 import org.hibernate.Session;
 
 /**
@@ -19,14 +19,14 @@ public class Create {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
                                 .configure("hibernate.cfg.xml")
-                                .addAnnotatedClass(Rower.class)
+                                .addAnnotatedClass(Bike.class)
                                 .buildSessionFactory();
         
         Session session = factory.getCurrentSession();
         
         try {
             System.out.println("Adding new bike");
-            Rower rower = new Rower("bikename", "bikebrand", "miejski", 80);
+            Bike rower = new Bike("bikename", "bikebrand", "miejski", 65.4);
             session.beginTransaction();
             session.save(rower);
             session.getTransaction().commit(); 
