@@ -5,7 +5,7 @@
  */
 package crud;
 
-import entity.Rower;
+import entity.Bike;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -33,7 +33,7 @@ public class ReadDAOTest {
     public void setUp() {
         factory = new Configuration()
                   .configure("hibernate.cfg.xml")
-                  .addAnnotatedClass(Rower.class)
+                  .addAnnotatedClass(Bike.class)
                   .buildSessionFactory();
         
         session = factory.getCurrentSession();
@@ -50,12 +50,12 @@ public class ReadDAOTest {
     @Test
     public void testRead() {
         System.out.println("read");
-        Rower bikeToCreate = new Rower("readNazwa", "readMarka", "readRodzaj", 500);;
+        Bike bikeToCreate = new Bike("readNazwa", "readMarka", "readRodzaj", 500);;
         session.beginTransaction();
         session.save(bikeToCreate);
         session.getTransaction().commit(); 
         ReadDAO instance = new ReadDAO();
-        Rower retrivedBike = instance.read(bikeToCreate.getId());
+        Bike retrivedBike = instance.read(bikeToCreate.getId());
         assertEquals(bikeToCreate.toString(), retrivedBike.toString());
     }
     

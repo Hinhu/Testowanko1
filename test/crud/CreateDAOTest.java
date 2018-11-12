@@ -5,7 +5,7 @@
  */
 package crud;
 
-import entity.Rower;
+import entity.Bike;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -33,7 +33,7 @@ public class CreateDAOTest {
     public void setUp() {
         factory = new Configuration()
                   .configure("hibernate.cfg.xml")
-                  .addAnnotatedClass(Rower.class)
+                  .addAnnotatedClass(Bike.class)
                   .buildSessionFactory();
         
         session = factory.getCurrentSession();
@@ -51,11 +51,11 @@ public class CreateDAOTest {
     @Test
     public void testCreate() {
         System.out.println("create");
-        Rower bikeToCreate = new Rower("createNazwa", "createMarka", "createRodzaj", 60);
+        Bike bikeToCreate = new Bike("createNazwa", "createMarka", "createRodzaj", 60);
         CreateDAO instance = new CreateDAO();
         instance.create(bikeToCreate);
         session.beginTransaction();
-        Rower retrivedBike = (Rower) session.get(Rower.class, bikeToCreate.getId());
+        Bike retrivedBike = (Bike) session.get(Bike.class, bikeToCreate.getId());
         session.getTransaction().commit();
         assertEquals(bikeToCreate.toString(), retrivedBike.toString());
     }
