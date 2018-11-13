@@ -59,4 +59,11 @@ public class ReadDAOTest {
         assertEquals(bikeToCreate.toString(), retrivedBike.toString());
     }
     
+    @Test
+    public void testReadNotExist() {
+        ReadDAO instance = new ReadDAO();
+        Bike retrivedBike = instance.read(-1);
+        assertNull(retrivedBike);
+    }
+    
 }
