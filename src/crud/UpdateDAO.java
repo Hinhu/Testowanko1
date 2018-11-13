@@ -33,8 +33,8 @@ public class UpdateDAO {
         Session session = factory.getCurrentSession();
                 
         try{
-            Bike bikeToUpdate = (Bike) session.get(Bike.class, bikeId);
             session.beginTransaction();
+            Bike bikeToUpdate = (Bike) session.get(Bike.class, bikeId);
             bikeToUpdate.update(newBike);
             session.update(bikeToUpdate);
             session.getTransaction().commit(); 
