@@ -8,6 +8,7 @@ package crud;
 import entity.Bike;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.StaleStateException;
 import org.hibernate.cfg.Configuration;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -64,6 +65,22 @@ public class DeleteDAOTest {
         session = factory.getCurrentSession();
         session.beginTransaction();
         Bike retrivedBike = (Bike) session.get(Bike.class, bikeToDelete.getId());
+        session.getTransaction().commit();
+        System.out.println("Search of deleted bike results with "+retrivedBike);
+        assertEquals(null, retrivedBike);
+    }
+    
+    @Test(expected = StaleStateException.class)
+    public void testDeleteNull() {
+        System.out.println("delete");
+        final int bike_id = -1;
+        DeleteDAO instance = new DeleteDAO();
+        instance.delete(bike_id);
+        System.out.println("Bike deleted");
+        
+        session = factory.getCurrentSession();
+        session.beginTransaction();
+        Bike retrivedBike = (Bike) session.get(Bike.class, bike_id);
         session.getTransaction().commit();
         System.out.println("Search of deleted bike results with "+retrivedBike);
         assertEquals(null, retrivedBike);
